@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 app.config.from_object(Configurations)
 
-db = SQLAlchemy()
+db = SQLAlchemy(app)
 
 
 
