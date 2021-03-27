@@ -1,5 +1,8 @@
+
 from app import app
-from flask import render_template
+from flask import render_template, request, redirect, url_for, flash, session
+from models import Users
+
 
 
 
@@ -11,3 +14,18 @@ def index():
 def registration():
     return render_template("registration.html")
 
+@app.rote("/login", methods = ['GET, POST'])
+def login_page():
+    login = request.form.get('login')
+    password = request.form.get('password')
+
+    if login and password:
+        if login in Users.username:
+            
+    else:
+        return render_template('login.html')
+    
+
+@app.route("/logout", methods = ['GET, POST'])
+def logout():
+    pass
