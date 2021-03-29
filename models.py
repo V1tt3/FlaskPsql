@@ -6,6 +6,6 @@ class Users(db.Model, UserMixin):
     username = db.Column(db.String(25), unique = True, nullable = False )
     password = db.Column(db.String(), nullable = False)
 
-@manager.user_loader
-def load_user(user_id):
-    return user.query.get(user_id)
+#@manager.user_loader
+#def load_user(user_id):
+#    return user.query.get(user_id)

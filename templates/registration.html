@@ -7,10 +7,38 @@
 
 
 {% block content_title %}
- This is reg page
+ Registration
 {% endblock %}
 
 
 {% block content %}
- regregregreg
+ <form action="{{ url_for('registration') }}" method="POST">
+     <div>
+         {{ form.username(class_='form.controll', placeholder='Username', autocomplite='off', autofocus=true) }}
+         <ul>
+             {% for error in form.username.errors %}
+             <li>{{ error }}</li>
+             {% endfor %}
+         </ul>
+     </div>
+     <div>
+         {{ form.password(clss_='form.controll', placeholder ='Password', autofocus=false) }}
+         <ul>
+            {% for error in form.password.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+         </ul>
+     </div>
+    <div>
+        {{ form.confirm(clss_='form.controll', placeholder ='Confirm Password', autofocus=false) }}
+        <ul>
+            {% for error in form.confirm.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        {{ form.submit_button }}
+    </div>
+</form>
 {% endblock %}
