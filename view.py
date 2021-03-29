@@ -1,5 +1,6 @@
-
 from app import app
+
+
 from flask import render_template, request, redirect, url_for, flash, session
 from models import Users
 from forms import *
@@ -14,7 +15,7 @@ def index():
 @app.route("/registration", methods=['GET', 'POST'])
 def registration():
     reg_form = RegForm()
-    if reg_form.validate():
+    if reg_form.validate_on_submit():
         return "great"
 
     return render_template("registration.html", form = reg_form)

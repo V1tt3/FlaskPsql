@@ -16,6 +16,7 @@ db = SQLAlchemy(app)
 
 #log_manager = login_manager(app)
 
+
 migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)

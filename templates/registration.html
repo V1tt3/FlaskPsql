@@ -12,9 +12,10 @@
 
 
 {% block content %}
- <form action="{{ url_for('registration') }}" method="POST">
+ <form action="/registration" method="POST">
+    {{ form.csrf_token }}
      <div>
-         {{ form.username(class_='form.controll', placeholder='Username', autocomplite='off', autofocus=true) }}
+         {{ form.username( placeholder='Username', autocomplite='off', autofocus=true) }}
          <ul>
              {% for error in form.username.errors %}
              <li>{{ error }}</li>
@@ -22,7 +23,7 @@
          </ul>
      </div>
      <div>
-         {{ form.password(clss_='form.controll', placeholder ='Password', autofocus=false) }}
+         {{ form.password( placeholder ='Password', autofocus=false) }}
          <ul>
             {% for error in form.password.errors %}
             <li>{{ error }}</li>
@@ -30,7 +31,7 @@
          </ul>
      </div>
     <div>
-        {{ form.confirm(clss_='form.controll', placeholder ='Confirm Password', autofocus=false) }}
+        {{ form.confirm( placeholder ='Confirm Password', autofocus=false) }}
         <ul>
             {% for error in form.confirm.errors %}
             <li>{{ error }}</li>
