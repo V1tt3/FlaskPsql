@@ -1,3 +1,6 @@
+{% from 'form_helper.html' import displayField %}
+
+
 {% extends 'base.html' %}
 
 
@@ -14,30 +17,11 @@
 {% block content %}
  <form action="/registration" method="POST">
     {{ form.csrf_token }}
-     <div>
-         {{ form.username( placeholder='Username', autocomplite='off', autofocus=true) }}
-         <ul>
-             {% for error in form.username.errors %}
-             <li>{{ error }}</li>
-             {% endfor %}
-         </ul>
-     </div>
-     <div>
-         {{ form.password( placeholder ='Password', autofocus=false) }}
-         <ul>
-            {% for error in form.password.errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-         </ul>
-     </div>
-    <div>
-        {{ form.confirm( placeholder ='Confirm Password', autofocus=false) }}
-        <ul>
-            {% for error in form.confirm.errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-        </ul>
-    </div>
+
+    {{ displayField( form.username, 'Username', autocomplite='off', autofocus=true ) }}
+    {{ displayField( form.password, 'Password' ) }}
+    {{ displayField( form.confirm, 'Confirm Password' ) }}
+
     <div>
         {{ form.submit_button }}
     </div>
