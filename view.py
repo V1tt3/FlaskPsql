@@ -12,37 +12,33 @@ from forms import *
 def index():
     return render_template("index.html")
 
-#REGISTRATION
+#------------------------------------REGISTRATION-----------------------------------------
 @app.route("/registration", methods=['GET', 'POST'])
 def registration():
+
     reg_form = RegForm()
+
     if reg_form.validate_on_submit():
         username = reg_form.username.data
         password = reg_form.password.data
 
-        #username exist???
-        user_object = Users.query.filter_by(username = username).first()
-        if user_object:
-            return "Someone else has that username!"
-
-        # add user in db
         user = Users(username = username, password = password)
         db.session.add(user)
         db.session.commit()
-        return 'Now you are in db'
+        
+        return redirect(url_for('login'))
 
     return render_template("registration.html", form = reg_form)
 
-@app.route("/login", methods = ['GET, POST'])
-def login_page():
-    #login = request.form.get('login')
-    #password = request.form.get('password')
+#--------------------------------------LOGIN----------------------------------------------
+@app.route("/login", methods = ['GET', 'POST'])
+def login():
+    log_form = LogForm()
+    
+    if log_form.validate_on_submit():
+        return "Logged in!"
 
-    #if login and password:
-     #   if login in Users.username:
-            
-   # else:
-    return render_template('login.html')
+    return render_template("login.html", form = log_form)
     
 
 @app.route("/logout", methods = ['GET, POST'])
